@@ -1,0 +1,23 @@
+<plugin name='simple-blog' version='0.1' grailsVersion='1.1-SNAPSHOT &gt; *'>
+  <author>Graeme Rocher</author>
+  <title>Simple Blog</title>
+  <description>\
+A plugin that adds a simple blog interface to an application
+</description>
+  <documentation>http://grails.org/SimpleBlog+Plugin</documentation>
+  <resources>
+    <resource>BlogUrlMappings</resource>
+    <resource>BuildConfig</resource>
+    <resource>Config</resource>
+    <resource>DataSource</resource>
+    <resource>UrlMappings</resource>
+    <resource>org.grails.blog.BlogController</resource>
+    <resource>org.grails.blog.BlogEntry</resource>
+    <resource>org.grails.blog.BlogTagLib</resource>
+  </resources>
+  <dependencies>
+    <plugin name='feeds' version='1.4 &gt; *' />
+    <plugin name='commentable' version='0.7 &gt; *' />
+    <plugin name='taggable' version='0.4.2 &gt; *' />
+  </dependencies>
+</plugin>
