@@ -25,7 +25,8 @@
 		<plugin:isAvailable name="searchable">
 			<div class="searchBox">
 				<g:form url="[controller:'blog', action:'search']">
-					<g:textField name="q"></g:textField> <g:submitButton name="Search Blogs"></g:submitButton>
+					<g:textField name="q"></g:textField> 
+					<g:submitButton name="${message(code:'blog.search.button', 'default':'Search Blogs')}" />
 				</g:form>
 			</div>
 		</plugin:isAvailable>

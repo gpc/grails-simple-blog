@@ -9,11 +9,11 @@
 	</head>
 	<body>
         <div class="blogControls">
-            <div class="menuButton"><g:link class="list" controller="blog" action="list"><g:message code="grails.blog.list.link" default="Blog Home"></g:message></g:link></div>
+            <div class="menuButton"><g:link class="list" controller="blog" action="list"><g:message code="blog.list.link" default="Blog Home"></g:message></g:link></div>
 			<g:if test="${entry.id}">
             	<div class="menuButton">
 					<g:link class="show" controller="blog" action="showEntry" params="[title:entry.title, author:entry.author]">
-						<g:message code="grails.blog.show.link" default="Show Entry"></g:message>
+						<g:message code="blog.show.link" default="Show Entry"></g:message>
 					</g:link>
 				</div>			
 			</g:if>
@@ -23,7 +23,7 @@
 		<div id="createEntry" class="createEntry">
 			<h1>
 				<g:if test="${entry.id}">
-					<g:message code="blog.create.title" default="Edit Entry"></g:message>				
+					<g:message code="blog.edit.title" default="Edit Entry"></g:message>				
 				</g:if>
 				<g:else>
 					<g:message code="blog.create.title" default="Create Entry"></g:message>				
