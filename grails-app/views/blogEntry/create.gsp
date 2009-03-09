@@ -9,11 +9,11 @@
 	</head>
 	<body>
         <div class="blogControls">
-            <div class="menuButton"><g:link class="create" controller="blog" action="list"><g:message code="grails.blog.list.link" default="Blog Home"></g:message></g:link></div>
+            <div class="menuButton"><g:link class="list" controller="blog" action="list"><g:message code="grails.blog.list.link" default="Blog Home"></g:message></g:link></div>
 			<g:if test="${entry.id}">
             	<div class="menuButton">
 					<g:link class="show" controller="blog" action="showEntry" params="[title:entry.title, author:entry.author]">
-						<g:message code="grails.blog.edshowit.link" default="Show Entry"></g:message>
+						<g:message code="grails.blog.show.link" default="Show Entry"></g:message>
 					</g:link>
 				</div>			
 			</g:if>
@@ -21,7 +21,15 @@
 		</div>
 		
 		<div id="createEntry" class="createEntry">
-			<h1><g:message code="blog.create.title" default="Create Entry"></g:message></h1>
+			<h1>
+				<g:if test="${entry.id}">
+					<g:message code="blog.create.title" default="Edit Entry"></g:message>				
+				</g:if>
+				<g:else>
+					<g:message code="blog.create.title" default="Create Entry"></g:message>				
+				</g:else>
+				
+			</h1>
 			<g:renderErrors bean="${entry}"></g:renderErrors>
 			<g:form class="createEntryForm" id="createEntryForm" name="createEntryForm" url="[controller:'blog', action:'publish']">
 				<g:if test="${entry.id}">

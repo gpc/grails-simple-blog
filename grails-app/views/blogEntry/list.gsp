@@ -70,7 +70,7 @@
 			</div>
 			<g:set var="remaining" value="${entries-first}"></g:set>
 			<g:if test="${remaining}">
-				<g:render template="/blogEntry/recentEntries" model="[entries:remaining]" />
+				<g:render template="/blogEntry/recentEntries" model="[entries:remaining]" plugin="simple-blog" />
 			
 			</g:if>
 		</div>
