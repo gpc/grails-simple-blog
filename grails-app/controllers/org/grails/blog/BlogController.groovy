@@ -63,7 +63,7 @@ class BlogController {
 			
 			for(e in entries) {
 				entry(e.title) {
-					link = g.createLink(absolute:true, controller:"blow", action:"showEntry", params:[title:e.title, author:e.author])
+					link = g.createLink(absolute:true, controller:"blog", action:"showEntry", params:[title:e.title, author:e.author])
 					e.body
 				}
 			}

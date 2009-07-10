@@ -1,8 +1,8 @@
 class SimpleBlogGrailsPlugin {
     // the plugin version
-    def version = "0.1.2"
+    def version = "0.1.3"
     // the version or versions of Grails the plugin is designed for
-    def grailsVersion = "1.1-SNAPSHOT > *"
+    def grailsVersion = "1.1 > *"
     // the other plugins this plugin depends on
     def dependsOn = [feeds:"1.4 > *", commentable:"0.7 > *", taggable:"0.4.2 > *"]
     // resources that are excluded from plugin packaging
