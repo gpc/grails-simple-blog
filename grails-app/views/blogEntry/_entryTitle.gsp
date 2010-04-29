@@ -3,9 +3,9 @@
 </h2>
 <div class="entryDetails">
 	<g:formatDate date="${entry.dateCreated}" format="MMMMM dd, yyyy" /> by 
-	<g:link controller="blog"  action="showEntry" params="[author:entry.author]">${entry.author}</g:link> |
+	<g:link controller="blog" action="${entry.author}">${entry.author}</g:link> |
 	<g:each status="i" var="tag" in="${entry.tags}">
-		<g:link controller="blog" action="byTag" params="[tag:tag.trim()]">${tag}</g:link><g:if test="${i<entry.tags.size()-1}">, </g:if>
+		<g:link controller="blog" action="tagged" id="${tag}">${tag}</g:link><g:if test="${i<entry.tags.size()-1}">, </g:if>
 	</g:each> |
 	<g:link controller="blog" action="showEntry" 
 	        params="[author:entry.author, title:entry.title]"
