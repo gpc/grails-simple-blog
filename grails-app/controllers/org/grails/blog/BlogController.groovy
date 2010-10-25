@@ -74,6 +74,8 @@ class BlogController {
             for(e in entries) {
                 entry(e.title) {
                     link = g.createLink(absolute:true, controller:"blog", action:"showEntry", params:[title:e.title, author:e.author])
+                    publishedDate = e.lastUpdated
+                    author = e.author
                     e.body
                 }
             }
