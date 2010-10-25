@@ -1,6 +1,6 @@
 class SimpleBlogGrailsPlugin {
     // the plugin version
-    def version = "0.1.4"
+    def version = "0.1.5"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.1 > *"
     // the other plugins this plugin depends on
@@ -19,9 +19,4 @@ A plugin that adds a simple blog interface to an application
 
     // URL to the plugin's documentation
     def documentation = "http://grails.org/SimpleBlog+Plugin"
-
-    def doWithDynamicMethods = { ctx ->
-        // TODO Implement registering dynamic methods to classes (optional)
-    }
-
 }
