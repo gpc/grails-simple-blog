@@ -14,6 +14,7 @@
         <div class="blogControls">
             <div class="menuButton"><g:link class="list" controller="blog" action="list"><g:message code="grails.blog.list.link" default="Blog Home"></g:message></g:link></div>
             <div class="menuButton"><g:link class="edit" controller="blog" action="editEntry" id="${entry.id}"><g:message code="grails.blog.edit.link" default="Edit Entry"></g:message></g:link></div>
+            <div class="menuButton"><g:link class="edit" controller="blog" action="deleteEntry" id="${entry.id}"><g:message code="grails.blog.delete.link" default="Delete Entry"></g:message></g:link></div>
 
 		</div>
 		

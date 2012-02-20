@@ -124,6 +124,21 @@ class BlogController {
             response.sendError 404
         }
     }
+
+    def deleteEntry = {
+        def entry = BlogEntry.get(params.id)
+        if(entry) {
+            entry.comments.each {comment ->
+                entry.removeComment comment
+            }
+            entry.delete()
+            redirect action: 'list'
+        }
+        else {
+            response.sendError 404
+        }
+    }
+
     def showEntry = {
         def entry = BlogEntry.findByAuthorAndTitle(params.author, params.title)
         if(entry) {
