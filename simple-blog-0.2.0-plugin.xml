@@ -1,0 +1,35 @@
+<plugin name='simple-blog' version='0.2.0' grailsVersion='1.1 &gt; *'>
+  <author>Graeme Rocher</author>
+  <title>Simple Blog</title>
+  <description>\
+A plugin that adds a simple blog interface to an application
+</description>
+  <documentation>http://grails.org/SimpleBlog+Plugin</documentation>
+  <type>SimpleBlogGrailsPlugin</type>
+  <resources>
+    <resource>BlogUrlMappings</resource>
+    <resource>org.grails.blog.BlogController</resource>
+    <resource>org.grails.blog.BlogEntry</resource>
+    <resource>org.grails.blog.BlogTagLib</resource>
+  </resources>
+  <repositories>
+    <repository name='grailsCentral' url='http://plugins.grails.org' />
+    <repository name='http://repo.grails.org/grails/plugins' url='http://repo.grails.org/grails/plugins/' />
+    <repository name='http://repo.grails.org/grails/core' url='http://repo.grails.org/grails/core/' />
+    <repository name='grailsCore' url='http://svn.codehaus.org/grails/trunk/grails-plugins' />
+    <repository name='mavenCentral' url='http://repo1.maven.org/maven2/' />
+  </repositories>
+  <dependencies>
+    <test>
+      <dependency group='org.gmock' name='gmock' version='0.8.2' />
+      <dependency group='org.hamcrest' name='hamcrest-library' version='1.1' />
+    </test>
+  </dependencies>
+  <plugins />
+  <runtimePluginRequirements>
+    <plugin name='feeds' version='1.4 &gt; *' />
+    <plugin name='commentable' version='0.7 &gt; *' />
+    <plugin name='taggable' version='0.4.2 &gt; *' />
+  </runtimePluginRequirements>
+  <behavior />
+</plugin>
