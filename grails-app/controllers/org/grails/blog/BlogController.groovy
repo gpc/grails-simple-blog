@@ -158,14 +158,19 @@ class BlogController {
     
     def search = {
         try {
-            def searchResult = BlogEntry.search(params.q, escape:true)          
-            
-            renderListView searchResult.results, searchResult.total
+			def query = params.q?.trim()
+
+			if (query) {
+            	def searchResult = BlogEntry.search(params.q, escape:true)          
+	            renderListView searchResult.results, searchResult.total
+
+			} else {
+				renderListView findRecentEntries(), 0
+			}
         }
         catch(e) {
             // ignore, searchable not installed
             log.error "Search error ${e.message}",e
-            
             renderListView findRecentEntries(), 0
         }
     }
