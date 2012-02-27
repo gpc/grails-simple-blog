@@ -1,4 +1,4 @@
-<plugin name='simple-blog' version='0.2.0' grailsVersion='1.1 &gt; *'>
+<plugin name='simple-blog' version='0.2.1' grailsVersion='1.1 &gt; *'>
   <author>Graeme Rocher</author>
   <title>Simple Blog</title>
   <description>\
