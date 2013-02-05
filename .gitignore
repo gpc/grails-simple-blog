@@ -1,2 +1,6 @@
 grails-simple-blog-*.zip
 target/
+/plugin.xml
+*.log
+.settings
+web-app

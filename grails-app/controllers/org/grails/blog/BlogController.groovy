@@ -1,22 +1,22 @@
 package org.grails.blog
 
 class BlogController {
-    
+
     def allowedMethods = [publish:'POST']
-    
+
     def afterInterceptor = { model ->
         def layout = grailsApplication.config.blog.page.layout
         if(layout) model?.layout = layout
     }
-    
-    private parseDateParams = { params ->
+
+    private parseDateParams(params) {
         //TODO better default values for dates
         if(!params.year) return null
         def month = params.month?params.month:01
         def day = params.day?params.day:01
         Date.parse("yyyy/MM/dd", "$params.year/$month/$day")
     }
-    
+
     def list = {
         def date = parseDateParams(params)
         def today = new Date()
@@ -45,32 +45,31 @@ class BlogController {
         else {
             entries = findRecentEntries()
             def a= [cache:true]
-            
+
             totalEntries = BlogEntry.countByPublished(true, [cache:true])
         }
-        
+
         renderListView entries, totalEntries
     }
-    
+
     private findBlogAuthors() {
-        
         BlogEntry.withCriteria {
             projections { distinct "author" }
             cache true
-        }       
+        }
     }
+
     private findRecentEntries() {
-        
         BlogEntry.findAllByPublished(true,[max:10, cache:true, offset:params.offset, order:"desc", sort:"dateCreated"])
     }
-    
+
     def feed = {
         def entries = findRecentEntries()
         def feedOutput = {
             title = g.message(code:"blog.feed.title", 'default':"Recent Blog Posts")
-            description = g.message(code:"blog.feed.description", 'default':"Recent Blog Posts")            
+            description = g.message(code:"blog.feed.description", 'default':"Recent Blog Posts")
             link = g.createLink(absolute:true, controller:"blog", action:"list")
-            
+
             for(e in entries) {
                 entry(e.title) {
                     link = g.createLink(absolute:true, controller:"blog", action:"showEntry", params:[title:e.title, author:e.author])
@@ -81,23 +80,23 @@ class BlogController {
             }
         }
         if(['rss','atom'].contains(params.format))
-            render(feedType:params.format, feedOutput)      
+            render(feedType:params.format, feedOutput)
         else
-            render(feedType:"rss", feedOutput)      
+            render(feedType:"rss", feedOutput)
     }
-    
-    def createEntry = {     
+
+    def createEntry = {
         def entry = new BlogEntry( request.method == 'POST' ? params['entry'] : [:])
-        
+
         render view:"/blogEntry/create", model:[entry:entry]
     }
-    
+
     def publish = {
         def entry = BlogEntry.get(params.id) ?: new BlogEntry()
         BlogEntry.withTransaction {
             entry.properties = params['entry']
             def authorEvaluator = grailsApplication.config.grails.blog.author.evaluator
-            
+
             if(authorEvaluator instanceof Closure) {
                 authorEvaluator.delegate = this
                 authorEvaluator.resolveStrategy = Closure.DELEGATE_FIRST
@@ -110,11 +109,10 @@ class BlogController {
             }
             else {
                 render view:"/blogEntry/create",model:[entry:entry]
-            }               
+            }
         }
-
     }
-    
+
     def editEntry = {
         def entry = BlogEntry.get(params.id)
         if(entry) {
@@ -148,20 +146,20 @@ class BlogController {
             response.sendError 404
         }
     }
-    
+
     private renderListView(entries, totalEntries) {
         render(view: "/blogEntry/list", model:[entries: entries,
                                         authors: findBlogAuthors(),
                                         tagNames: BlogEntry.allTags,
                                         totalEntries: totalEntries])
     }
-    
+
     def search = {
         try {
 			def query = params.q?.trim()
 
 			if (query) {
-            	def searchResult = BlogEntry.search(params.q, escape:true)          
+            	def searchResult = BlogEntry.search(params.q, escape:true)
 	            renderListView searchResult.results, searchResult.total
 
 			} else {
@@ -174,7 +172,7 @@ class BlogController {
             renderListView findRecentEntries(), 0
         }
     }
-    
+
     def byAuthor = {
             if(params.author) {
                 def entries = BlogEntry.findAllByAuthor(params.author.trim(), [max:10, offset:params.offset, sort:"dateCreated", order:"desc"])
@@ -184,7 +182,7 @@ class BlogController {
                 redirect action:"list"
             }
     }
-    
+
     def byTag = {
         if(params.tag) {
             def entries = BlogEntry.findAllByTag(params.tag.trim(), [max:10, offset:params.offset, sort:"dateCreated", order:"desc"])
@@ -193,7 +191,5 @@ class BlogController {
         else {
             redirect action:"list"
         }
-        
     }
-
 }

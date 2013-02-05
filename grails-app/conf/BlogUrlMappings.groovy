@@ -1,4 +1,3 @@
-
 class BlogUrlMappings {
 
     static mappings = {
@@ -19,5 +18,4 @@ class BlogUrlMappings {
         "/blog/search"(controller:"blog",action:"search")   
         "/blog/feed/$format"(controller:"blog", action:"feed")
     }
-
 }

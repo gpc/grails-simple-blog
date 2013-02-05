@@ -1,14 +1,14 @@
 
-import BlogUrlMappings 
-import grails.test.GrailsUrlMappingsTestCase;
-import org.junit.Test 
+import grails.test.GrailsUrlMappingsTestCase
+
+import org.junit.Test
 
 class BlogUrlMappingTest extends GrailsUrlMappingsTestCase {
     static mappings = BlogUrlMappings
-    
+
     @Test
     void confirmingAccessProblemOnURLMapping() {
-        assertForwardUrlMapping("/blog", controller:"blog", action:"list") 
+        assertForwardUrlMapping("/blog", controller:"blog", action:"list")
     }
 
     @Test
@@ -20,7 +20,7 @@ class BlogUrlMappingTest extends GrailsUrlMappingsTestCase {
             day = 10
         }
     }
-    
+
     @Test
     void accessLitActionThroughDateParams() {
         assertForwardUrlMapping("/blog/author1/2007", controller:"blog", action: "list") {

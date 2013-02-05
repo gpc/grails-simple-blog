@@ -1,22 +1,22 @@
 package org.grails.blog
-import org.junit.After 
-import org.junit.Before 
-import org.junit.Test 
-import org.grails.comments.*
 
-import grails.test.*
+import grails.test.GrailsUnitTestCase
 
+import org.grails.comments.Comment
+import org.junit.After
+import org.junit.Before
+import org.junit.Test
 
 class BlogEntryIntegrationTests extends GrailsUnitTestCase {
     def entry
     def poster
-    
+
     @Before
     void before() {
         super.setUp()
         createNewEntry()
     }
-    
+
     @After
     void after() {
         super.tearDown()
@@ -30,17 +30,17 @@ class BlogEntryIntegrationTests extends GrailsUnitTestCase {
         entry.dateCreated = new Date()
         entry.lastUpdated = new Date()
         entry.author = "Author"
-       
+
         assertNotNull entry.save(flush:true)
         assertNotNull entry.id
     }
 
     @Test
     void testBlogEntryShouldBeginWithNoComments() {
-        assertNotNull entry.getComments() 
+        assertNotNull entry.getComments()
         assertTrue entry.comments.empty
     }
-    
+
     @Test
     void testBlogEntryShouldCanReceiveComments() {
         poster = new FakeUser()
@@ -48,17 +48,17 @@ class BlogEntryIntegrationTests extends GrailsUnitTestCase {
         assertEquals 1, Comment.count()
         assertEquals 1, entry.comments.size()
     }
-    
+
     @Test
     void testBlogEntryShouldBeAbleToReceiveTags() {
         entry.addTag("posts")
         entry.addTag("test")
         entry.addTag("videos")
-        
+
         def tags =  ["posts", "test", "videos"]
         assertEquals tags, entry.tags
     }
-    
+
     @Test
     void shouldBeSearcheableByTitle() {
         def result = BlogEntry.search("*title*")
@@ -66,7 +66,7 @@ class BlogEntryIntegrationTests extends GrailsUnitTestCase {
         print result.results
         assertEquals 1, result.results.size()
     }
-    
+
     @Test
     void shouldBeSearcheableByAuthor() {
         def result = BlogEntry.search("Dummy")
@@ -74,11 +74,9 @@ class BlogEntryIntegrationTests extends GrailsUnitTestCase {
         print result.results
         assertEquals 1, result.results.size()
     }
-    
-    
+
     class FakeUser {
         int id
         String name
-        
     }
 }
