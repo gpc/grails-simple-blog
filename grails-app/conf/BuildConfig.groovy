@@ -26,5 +26,9 @@ grails.project.dependency.resolution = {
 		compile ':feeds:1.5'
 		compile ':commentable:0.8.1'
 		compile ':taggable:1.0.1'
+
+		runtime ":hibernate:$grailsVersion", {
+			export = false
+		}
 	}
 }

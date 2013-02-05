@@ -1,47 +1,28 @@
 package org.grails.blog
 
-import grails.test.GrailsUnitTestCase
-
 import org.grails.comments.Comment
-import org.junit.After
-import org.junit.Before
-import org.junit.Test
 
-class BlogEntryIntegrationTests extends GrailsUnitTestCase {
-    def entry
-    def poster
+class BlogEntryIntegrationTests extends GroovyTestCase {
 
-    @Before
-    void before() {
+    private BlogEntry entry = new BlogEntry(title: "blog Title", body: "Dummy Entry", author: "Author")
+    private FakeUser poster
+
+    @Override
+    protected void setUp() {
         super.setUp()
         createNewEntry()
     }
 
-    @After
-    void after() {
-        super.tearDown()
-        entry.delete(flush:true)
-    }
-
-    void createNewEntry() {
-        entry = new BlogEntry()
-        entry.title = "blog Title"
-        entry.body = "Dummy Entry"
-        entry.dateCreated = new Date()
-        entry.lastUpdated = new Date()
-        entry.author = "Author"
-
+    private void createNewEntry() {
         assertNotNull entry.save(flush:true)
         assertNotNull entry.id
     }
 
-    @Test
     void testBlogEntryShouldBeginWithNoComments() {
         assertNotNull entry.getComments()
         assertTrue entry.comments.empty
     }
 
-    @Test
     void testBlogEntryShouldCanReceiveComments() {
         poster = new FakeUser()
         entry.addComment(poster, "MyComment")
@@ -49,17 +30,14 @@ class BlogEntryIntegrationTests extends GrailsUnitTestCase {
         assertEquals 1, entry.comments.size()
     }
 
-    @Test
     void testBlogEntryShouldBeAbleToReceiveTags() {
         entry.addTag("posts")
         entry.addTag("test")
         entry.addTag("videos")
 
-        def tags =  ["posts", "test", "videos"]
-        assertEquals tags, entry.tags
+        assertEquals(["posts", "test", "videos"], entry.tags)
     }
 
-    @Test
     void shouldBeSearcheableByTitle() {
         def result = BlogEntry.search("*title*")
         assertNotNull result
@@ -67,7 +45,6 @@ class BlogEntryIntegrationTests extends GrailsUnitTestCase {
         assertEquals 1, result.results.size()
     }
 
-    @Test
     void shouldBeSearcheableByAuthor() {
         def result = BlogEntry.search("Dummy")
         assertNotNull result
