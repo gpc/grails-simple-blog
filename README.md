@@ -68,11 +68,39 @@ Useful available links:
 * `/blog/tagged/$tag` - List entries with tag
 * `/blog/feed/[rss|atom]` - Rss Feed
 
-### Taglibs
+### Blog Taglib
+
+#### <blog:renderEntries>
 
 To render the last 3 entries:
 
     <blog:renderEntries number="3" />
+
+The rendering of each entry is specified by the template `/blogEntry/recentEntries`. If the `number` attribute is
+omitted, it defaults to 5.
+
+#### <blog:recentEntryLinks>
+
+To render links to the last 3 entries:
+
+````
+<ul>
+    <blog:recentEntryLinks>
+        <li>
+            <g:link controller="blog" action="showEntry"
+                    params="[title: it.title, author: it.author]">${it.title}</g:link>
+            <span class="blogControlPanelDetail"><g:formatDate date="${it.publishedOn}"/></span>
+        </li>
+    </blog:recentEntryLinks>
+</ul>
+````
+
+The tag body is passed an instance of `BlogPostSummary` that may be referenced as `${it}` in order to render
+each entry. If the `number` attribute is omitted, links to all published entries will be rendered.
+
+#### <blog:countEntries/>
+
+Returns the number of published blog entries.
 
 ### Skinning
 
