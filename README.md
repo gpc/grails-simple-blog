@@ -87,9 +87,9 @@ To render links to the last 3 entries:
 <ul>
     <blog:recentEntryLinks number="3">
         <li>
-            <g:link controller="blog" action="showEntry"
-                    params="[title: it.title, author: it.author]">${it.title}</g:link>
-            <span class="blogControlPanelDetail"><g:formatDate date="${it.publishedOn}"/></span>
+            <g:link controller="blog" action="showEntry" params="[title: it.title, author: it.author]">
+                ${it.title}, <g:formatDate date="${it.publishedOn}"/>
+            </g:link>
         </li>
     </blog:recentEntryLinks>
 </ul>
