@@ -60,7 +60,7 @@ grails.blog.author.evaluator = evaluator
 grails.commentable.poster.evaluator = evaluator
 ````
 
-### UrlAccess
+### URL Mappings
 
 Useful available links:
 
