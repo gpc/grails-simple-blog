@@ -1,6 +1,6 @@
 class SimpleBlogGrailsPlugin {
 	def version = '0.2.1'
-	def grailsVersion = '1.1 > *'
+	def grailsVersion = '1.3 > *'
 	def author = 'Graeme Rocher'
 	def authorEmail = ''
 	def title = 'Simple Blog'
