@@ -64,9 +64,9 @@ grails.commentable.poster.evaluator = evaluator
 
 Useful available links:
 
-`/blog/$author?/$year?/$month?/$day?` - List entries (author and date range optional args)
-`/blog/tagged/$tag` - List entries with tag
-`/blog/feed/[rss|atom]` - Rss Feed
+* `/blog/$author?/$year?/$month?/$day?` - List entries (author and date range optional args)
+* `/blog/tagged/$tag` - List entries with tag
+* `/blog/feed/[rss|atom]` - Rss Feed
 
 ### Taglibs
 
