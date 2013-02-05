@@ -85,7 +85,7 @@ To render links to the last 3 entries:
 
 ````
 <ul>
-    <blog:recentEntryLinks>
+    <blog:recentEntryLinks number="3">
         <li>
             <g:link controller="blog" action="showEntry"
                     params="[title: it.title, author: it.author]">${it.title}</g:link>
