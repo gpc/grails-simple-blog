@@ -4,3 +4,4 @@ target/
 *.log
 .settings
 web-app
+*.iml

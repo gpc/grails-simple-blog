@@ -97,7 +97,8 @@ class BlogController {
             entry.properties = params['entry']
             def authorEvaluator = grailsApplication.config.grails.blog.author.evaluator
 
-            if(authorEvaluator instanceof Closure) {
+            // don't change the author if updating an entry, because this will cause the entry's URL to change
+            if(!entry.author && authorEvaluator instanceof Closure) {
                 authorEvaluator.delegate = this
                 authorEvaluator.resolveStrategy = Closure.DELEGATE_FIRST
                 entry.author = authorEvaluator.call()?.toString()
