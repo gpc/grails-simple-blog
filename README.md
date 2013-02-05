@@ -80,18 +80,19 @@ The plugin doesn't come with a layout or css defined, you will need to define th
 styles for CSS classes like "blogControls", "blogQuickLinks", "blogTags", etc
 
 ## Plugin History
-02/2013 0.2.2
+
+### Version 0.2.2
 * Blog post URLs no longer change after entry is updated
 
-02/2012 0.2.1
+### Version 0.2.1
 * Bug fix: blank search query string was throwing a org.apache.lucene.queryParser.ParseException
 
-02/2012 0.2.0
+### Version 0.2.0
 * Using Grails 2.0.1
 * Added ability to delete blog entries
 * Added missing dependencies
 
-05/2010 0.1.4
+### Version 0.1.4
 * Using Grails 1.3
 * Created Wiki documentation
 * Improvements on urlMapping
