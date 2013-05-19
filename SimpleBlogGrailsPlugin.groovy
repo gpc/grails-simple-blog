@@ -1,8 +1,8 @@
 class SimpleBlogGrailsPlugin {
-	def version = '0.3'
+	def version = '0.3.1'
 	def grailsVersion = '1.3 > *'
 	def author = 'Graeme Rocher'
-    def developers = [[name: 'Donal Murtagh']]
+	def developers = [[name: 'Donal Murtagh']]
 	def authorEmail = ''
 	def title = 'Simple Blog'
 	def description = 'Adds a simple blog interface to an application'

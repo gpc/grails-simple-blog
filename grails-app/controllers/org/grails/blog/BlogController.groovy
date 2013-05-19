@@ -105,7 +105,19 @@ class BlogController {
             }
             entry.published = true
             if(entry.save()) {
-                entry.parseTags(params.tags, ",")
+
+                // remove any existing tags, and add the new ones
+                entry.tags.each {
+                    entry.removeTag(it)
+                }
+
+                params.tags.split(",").collect {
+                    it = it.trim()
+                    if (it) {
+                        entry.addTag(it)
+                    }
+                }
+
                 redirect(action:"showEntry", params:[title:entry.title, author:entry.author])
             }
             else {
