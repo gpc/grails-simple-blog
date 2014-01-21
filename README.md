@@ -18,7 +18,7 @@ This plugin has the following dependencies:
 Add the following to `BuildConfig.groovy`
 
 ````groovy
-runtime ":simple-blog:0.2.1"
+runtime ":simple-blog:0.3.1"
 ````
 
 After installation you will have a controller to access:
@@ -70,7 +70,7 @@ Useful available links:
 
 ### Blog Taglib
 
-#### <blog:renderEntries>
+#### &lt;blog:renderEntries&gt;
 
 To render the last 3 entries:
 
@@ -79,7 +79,7 @@ To render the last 3 entries:
 The rendering of each entry is specified by the template `/blogEntry/recentEntries`. If the `number` attribute is
 omitted, it defaults to 5.
 
-#### <blog:recentEntryLinks>
+#### &lt;blog:recentEntryLinks&gt;
 
 To render links to the last 3 entries:
 
@@ -98,7 +98,7 @@ To render links to the last 3 entries:
 The tag body is passed an instance of `BlogPostSummary` that may be referenced as `${it}` in order to render
 each entry. If the `number` attribute is omitted, links to all published entries will be rendered.
 
-#### <blog:countEntries/>
+#### &lt;blog:countEntries&gt;
 
 Returns the number of published blog entries.
 
