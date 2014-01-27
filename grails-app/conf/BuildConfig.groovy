@@ -7,9 +7,13 @@ grails.project.dependency.resolution = {
 	log 'warn'
 
 	repositories {
-		grailsCentral()
-		mavenLocal()
-		mavenCentral()
+        grailsPlugins()
+        grailsHome()
+        mavenLocal()
+        grailsCentral()
+        mavenCentral()
+        mavenRepo "http://repository.springsource.com/maven/bundles/external"
+        mavenRepo "http://repo.grails.org/grails/core"
 	}
 
 	dependencies {
@@ -19,11 +23,11 @@ grails.project.dependency.resolution = {
 	}
 
 	plugins {
-		build ':release:2.2.0', ':rest-client-builder:1.0.3', {
+		build ':release:2.2.0', ':rest-client-builder:1.0.3', ":tomcat:$grailsVersion", {
 			export = false
 		}
 
-		compile ':feeds:1.5'
+		compile ':feeds:1.6'
 		compile ':commentable:0.8.1'
 		compile ':taggable:1.0.1'
 

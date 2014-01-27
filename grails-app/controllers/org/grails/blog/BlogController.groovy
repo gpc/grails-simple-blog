@@ -93,8 +93,9 @@ class BlogController {
 
     def publish = {
         def entry = BlogEntry.get(params.id) ?: new BlogEntry()
+        entry.properties = params
+
         BlogEntry.withTransaction {
-            entry.properties = params['entry']
             def authorEvaluator = grailsApplication.config.grails.blog.author.evaluator
 
             // don't change the author if updating an entry, because this will cause the entry's URL to change

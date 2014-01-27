@@ -1,6 +1,4 @@
-
 import grails.test.GrailsUrlMappingsTestCase
-
 import org.junit.Test
 
 class BlogUrlMappingTest extends GrailsUrlMappingsTestCase {
@@ -12,7 +10,7 @@ class BlogUrlMappingTest extends GrailsUrlMappingsTestCase {
     }
 
     @Test
-    void accessLitActionThroughDateParamsReverse() {
+    void accessListActionThroughDateParamsReverse() {
         assertReverseUrlMapping("/blog/author1/2007/10/10", controller:"blog", action: "list") {
             author = "author1"
             year = 2007
@@ -22,7 +20,7 @@ class BlogUrlMappingTest extends GrailsUrlMappingsTestCase {
     }
 
     @Test
-    void accessLitActionThroughDateParams() {
+    void accessListActionThroughDateParams() {
         assertForwardUrlMapping("/blog/author1/2007", controller:"blog", action: "list") {
             author = "author1"
             year = 2007
