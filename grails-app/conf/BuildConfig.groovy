@@ -23,7 +23,7 @@ grails.project.dependency.resolution = {
 	}
 
 	plugins {
-		build ':release:2.2.1', ':rest-client-builder:1.0.3', ":tomcat:$grailsVersion", {
+		build ':release:2.2.1', ':rest-client-builder:1.0.3', ":tomcat:2.1.5", {
 			export = false
 		}
 
@@ -31,7 +31,7 @@ grails.project.dependency.resolution = {
 		compile ':commentable:0.8.1'
 		compile ':taggable:1.0.1'
 
-		runtime ":hibernate:$grailsVersion", {
+		runtime ":hibernate:2.1.5", {
 			export = false
 		}
 	}
