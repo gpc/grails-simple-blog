@@ -56,7 +56,9 @@ grails.blog.author.evaluator = {
 }
 ````
 
-Incidentally, the Commentable plugin uses the same mechanism for determining the current user, so if you also have this plugin installed you can establish the current for both with:
+#### Commentable
+
+The Commentable plugin uses the same mechanism for determining the current user, so if you also have this plugin installed you can establish the current for both plugins with:
 
 ````groovy
 def evaluator = {
