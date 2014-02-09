@@ -3,13 +3,17 @@
 This plugin provides a simple blog feature, allowing users to create posts
 with a WYSIWYG editor and tag them. Users can append comments to posts and subscribe to the blog via RSS/Atom.
 
-## Dependency
+## Dependencies
 
 This plugin has the following dependencies:
 
 * [http://www.grails.org/plugin/taggable](Taggable Plugin)
 * [http://www.grails.org/plugin/commentable](Commentable Plugin)
 * [http://grails.org/plugin/feeds](Feeds Plugin)
+
+### Optional Searchable Dependency
+
+The plugin does not declare a dependency on the searchable plguin, but the `BlogController` provides a `search` action which uses this plugin to search the blog entries if it's installed.
 
 ## Usage
 
@@ -18,7 +22,7 @@ This plugin has the following dependencies:
 Add the following to `BuildConfig.groovy`
 
 ````groovy
-runtime ":simple-blog:0.3.1"
+runtime ":simple-blog:0.3.3"
 ````
 
 After installation you will have a controller to access:
