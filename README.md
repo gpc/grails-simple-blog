@@ -27,38 +27,46 @@ After installation you will have a controller to access:
 
 ### User Evaluator
 
-In order to use this plugin you need to define a user evaluator in `grails-app/conf/Config.groovy`
+In order to use this plugin you need to define a closure in `grails-app/conf/Config.groovy` that returns the current user. For example if the current user is stored in the session under the key `user`, the following would be appropriate
 
     grails.blog.author.evaluator = { session.user }
 
-If your user information is passed through request use
+Alernatively, if the current user is available on a request-scoped attributed named `user` use the following:
 
     grails.blog.author.evaluator = { request.user }
 
-One other option is to define a simple string to be added:
+Another option is to define a simple string to be added:
 
     grails.blog.author.evaluator = { "defaultUser" }
 
-The Commentable plugin uses the same mechanism for determining the current user. If the Spring Security plugin is
-also installed the evaluator for both can be established with:
+As a final example, if using the Spring Security plugin with a user domain class `com.example.User` whose identity property is named `id`, use the following:
 
 ````groovy
-def evaluator = {
+grails.blog.author.evaluator = {
 
-    def principal = SecurityContextHolder.context.authentication.principal
+    def principal = org.springframework.security.core.context.SecurityContextHolder.context.authentication.principal
 
     if (principal.hasProperty('id')) {
 
         def currentUserId = principal.id
         if (currentUserId) {
-            User.get(currentUserId)
+            com.example.User.get(currentUserId)
         }
     }
+}
+````
+
+Incidentally, the Commentable plugin uses the same mechanism for determining the current user, so if you also have this plugin installed you can establish the current for both with:
+
+````groovy
+def evaluator = {
+  // add code that returns the current user here
 }
 
 grails.blog.author.evaluator = evaluator
 grails.commentable.poster.evaluator = evaluator
 ````
+
 
 ### URL Mappings
 
