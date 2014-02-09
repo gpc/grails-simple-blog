@@ -93,9 +93,8 @@ class BlogController {
 
     def publish = {
         def entry = BlogEntry.get(params.id) ?: new BlogEntry()
-        entry.properties = params
-
         BlogEntry.withTransaction {
+            entry.properties = params['entry']
             def authorEvaluator = grailsApplication.config.grails.blog.author.evaluator
 
             // don't change the author if updating an entry, because this will cause the entry's URL to change
@@ -163,22 +162,22 @@ class BlogController {
 
     private renderListView(entries, totalEntries) {
         render(view: "/blogEntry/list", model:[entries: entries,
-                                        authors: findBlogAuthors(),
-                                        tagNames: BlogEntry.allTags,
-                                        totalEntries: totalEntries])
+                authors: findBlogAuthors(),
+                tagNames: BlogEntry.allTags,
+                totalEntries: totalEntries])
     }
 
     def search = {
         try {
-			def query = params.q?.trim()
+            def query = params.q?.trim()
 
-			if (query) {
-            	def searchResult = BlogEntry.search(params.q, escape:true)
-	            renderListView searchResult.results, searchResult.total
+            if (query) {
+                def searchResult = BlogEntry.search(params.q, escape:true)
+                renderListView searchResult.results, searchResult.total
 
-			} else {
-				renderListView findRecentEntries(), 0
-			}
+            } else {
+                renderListView findRecentEntries(), 0
+            }
         }
         catch(e) {
             // ignore, searchable not installed
@@ -188,13 +187,13 @@ class BlogController {
     }
 
     def byAuthor = {
-            if(params.author) {
-                def entries = BlogEntry.findAllByAuthor(params.author.trim(), [max:10, offset:params.offset, sort:"dateCreated", order:"desc"])
-                renderListView entries.findAll { it.published }, BlogEntry.countByAuthor(params.author.trim())
-            }
-            else {
-                redirect action:"list"
-            }
+        if(params.author) {
+            def entries = BlogEntry.findAllByAuthor(params.author.trim(), [max:10, offset:params.offset, sort:"dateCreated", order:"desc"])
+            renderListView entries.findAll { it.published }, BlogEntry.countByAuthor(params.author.trim())
+        }
+        else {
+            redirect action:"list"
+        }
     }
 
     def byTag = {
