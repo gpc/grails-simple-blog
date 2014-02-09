@@ -22,7 +22,7 @@ The plugin does not declare a dependency on the searchable plguin, but the `Blog
 Add the following to `BuildConfig.groovy`
 
 ````groovy
-runtime ":simple-blog:0.3.1"
+runtime ":simple-blog:0.3.3"
 ````
 
 After installation you will have a controller to access:
