@@ -123,6 +123,12 @@ styles for CSS classes like "blogControls", "blogQuickLinks", "blogTags", etc
 
 ## Plugin History
 
+### Version 0.3.5
+* [Fix bug](https://github.com/gpc/grails-simple-blog/issues/6) when finding blog posts by author. As a consequence of 
+this fix, links such as `<g:link controller="blog">Blog</g:link>` should be replaced by `<g:link controller="blog" action="list">Blog</g:link>`
+or `<g:link uri="/blog">Blog</g:link>` because the first link generates a URL `/blog/index` which will result in an 
+attempt to find posts by an author named "index"
+
 ### Version 0.2.2
 * Blog post URLs no longer change after entry is updated
 
