@@ -1,5 +1,5 @@
 class SimpleBlogGrailsPlugin {
-	def version = '0.3.4'
+	def version = '0.3.5'
 	def grailsVersion = '1.3 > *'
 	def author = 'Graeme Rocher'
 	def developers = [[name: 'Donal Murtagh']]

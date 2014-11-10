@@ -23,12 +23,15 @@ class BlogController {
         def author = params.author
         def entries
         def totalEntries
-        if(author && date) {
+        if(author) {
             entries = BlogEntry.withCriteria {
                 eq 'author', author
                 eq 'published', true
-                if(params.year)
-                    between 'dateCreated', date, today
+
+                if(date) {
+                    if(params.year)
+                        between 'dateCreated', date, today
+                }
                 order "dateCreated", "desc"
                 maxResults 10
                 cache true
@@ -37,15 +40,16 @@ class BlogController {
                 projections { rowCount() }
                 eq 'author', author
                 eq 'published', true
-                if(params.year)
-                    between 'dateCreated', date, today
+
+                if(date) {
+                    if (params.year)
+                        between 'dateCreated', date, today
+                }
                 cache true
             }
         }
         else {
             entries = findRecentEntries()
-            def a= [cache:true]
-
             totalEntries = BlogEntry.countByPublished(true, [cache:true])
         }
 
